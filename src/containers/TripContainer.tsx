@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import debounce from 'lodash.debounce';
 
-import Card from '../blocks/Card/Card';
 import Search from '../components/Search/Search';
+import locationSearch from '../api/locationSearch';
 
 export default class TripContainer extends Component {
-  state = { search: '' };
+  state = { search: '', locations: [] };
 
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,7 +14,10 @@ export default class TripContainer extends Component {
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-    this.setState({ search: value }, () => console.log(this.state.search));
+    this.setState({ search: value }, async () => {
+      const locations = await locationSearch(this.state.search);
+      this.setState({ locations });
+    });
   };
 
   render() {
@@ -24,11 +28,6 @@ export default class TripContainer extends Component {
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           value={search}
-        />
-        <Card
-          header="Hi Card"
-          subheader="hello"
-          text="Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla."
         />
       </div>
     );
