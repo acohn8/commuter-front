@@ -5,6 +5,8 @@ import Search from '../../components/Search/Search';
 import locationSearch from '../../api/locationSearch';
 import ResultItem from '../../components/ResultItem/ResultItem';
 import WhiteBackground from '../../blocks/WhiteBackground/WhiteBackground';
+import allStations from '../AllStations/AllStations';
+import AllStations from '../AllStations/AllStations';
 
 interface IProps {
   setSelectedLocation: (location: FlattenedLocation) => void;
@@ -96,6 +98,7 @@ export default class SearchContainer extends Component<IProps> {
             ))}
           </WhiteBackground>
         )}
+        <AllStations />
       </div>
     );
   }
