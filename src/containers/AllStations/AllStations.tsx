@@ -9,6 +9,8 @@ const STATIONS_QUERY = gql`
     stations {
       id
       name
+      address
+      distance(lat: 38.9642906, lng: -77.0763133)
       lines {
         id
         name
@@ -26,7 +28,12 @@ const AllStations = () => (
       return (
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {stations.map((station: StationType) => (
-            <Card header={station.name} />
+            <Card
+              key={station.id}
+              header={station.name}
+              subheader={`${Number(station.distance).toFixed(1)} miles`}
+              text={station.address}
+            />
           ))}
         </div>
       );

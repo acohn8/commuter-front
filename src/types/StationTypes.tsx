@@ -1,6 +1,8 @@
 interface StationType {
   id: string;
   name: string;
+  address: string;
+  distance: any;
   lines: [
     {
       id: string;
