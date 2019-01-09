@@ -1,11 +1,11 @@
-export interface LocationResponse {
+export interface Location {
   id: string;
-  center: number[];
+  center?: number[];
   place_name: string;
 }
 
-export interface FlattenedLocation {
-  id: string;
-  center: number[];
-  placeName: string;
+export interface LocationQuery {
+  locations: Location[];
+  index: number;
+  search: string | undefined;
 }

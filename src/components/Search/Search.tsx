@@ -4,14 +4,15 @@ import SearchBar from '../SearchBar/SearchBar';
 
 interface IProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  value?: string;
+  value: string | undefined;
 }
 
-const Search = ({ handleSubmit }: IProps) => (
+const Search = ({ handleSubmit, value }: IProps) => (
   <>
+    {console.log(value)}
     <form onSubmit={handleSubmit}>
       <Search.Label>Enter your address</Search.Label>
-      <Search.Input />
+      <Search.Input value={value} />
       <input type="submit" hidden />
     </form>
   </>

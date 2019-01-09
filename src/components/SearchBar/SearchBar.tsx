@@ -9,11 +9,16 @@ const UPDATE_TERM = gql`
   }
 `;
 
-const SearchBar = () => (
+interface IProps {
+  value: string | undefined;
+}
+
+const SearchBar = ({ value }: IProps) => (
   <Mutation mutation={UPDATE_TERM}>
     {fetchLocations => (
       <SearchInput
         type="text"
+        value={value}
         onChange={e =>
           fetchLocations({ variables: { locationSearch: e.target.value } })
         }

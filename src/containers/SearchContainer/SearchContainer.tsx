@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-import { FlattenedLocation } from '../../types/SearchTypes';
 import Search from '../../components/Search/Search';
 import ResultItem from '../../components/ResultItem/ResultItem';
 import WhiteBackground from '../../blocks/WhiteBackground/WhiteBackground';
 import LocationList from '../../components/LocationList/LocationList';
+import { Location, LocationQuery } from '../../types/SearchTypes';
+import ListSelect from '../../components/ListSelect/ListSelect';
 
 const SET_ACTIVE_KEY = gql`
   mutation UpdateActiveIdKey($key: Int) {
@@ -16,10 +17,7 @@ const SET_ACTIVE_KEY = gql`
   }
 `;
 
-interface IProps {
-  setSelectedLocation: (location: FlattenedLocation) => void;
-}
-export default class SearchContainer extends Component<IProps> {
+export default class SearchContainer extends Component {
   handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -35,25 +33,29 @@ export default class SearchContainer extends Component<IProps> {
               }
             }}
           >
-            <Search handleSubmit={this.handleSubmit} />
-            <WhiteBackground>
-              <LocationList>
-                {(data: any) => {
-                  const { locations, index } = data;
-                  return (
-                    locations.length > 0 &&
-                    locations.map((feature: any) => (
-                      <ResultItem
-                        key={feature.id}
-                        placeName={feature.place_name}
-                        index={locations.indexOf(feature)}
-                        active={locations.indexOf(feature) === index}
-                      />
-                    ))
-                  );
-                }}
-              </LocationList>
-            </WhiteBackground>
+            <LocationList>
+              {(data: LocationQuery) => {
+                console.log(data);
+                const { locations, index, search } = data;
+                return (
+                  <>
+                    <Search handleSubmit={this.handleSubmit} value={search} />
+                    <WhiteBackground>
+                      {locations.length > 0 &&
+                        locations.map((feature: Location) => (
+                          <ListSelect key={feature.id} feature={feature.id}>
+                            <ResultItem
+                              placeName={feature.place_name}
+                              index={locations.indexOf(feature)}
+                              active={locations.indexOf(feature) === index}
+                            />
+                          </ListSelect>
+                        ))}
+                    </WhiteBackground>
+                  </>
+                );
+              }}
+            </LocationList>
           </div>
         )}
       </Mutation>
