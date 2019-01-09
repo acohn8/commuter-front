@@ -1,24 +1,23 @@
 import React from 'react';
-import SearchInput from './SearchInput';
 import SearchLabel from './SearchLabel';
+import SearchBar from '../SearchBar/SearchBar';
 
 interface IProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
 }
 
-const Search = ({ handleSubmit, handleChange, value }: IProps) => (
+const Search = ({ handleSubmit }: IProps) => (
   <>
     <form onSubmit={handleSubmit}>
       <Search.Label>Enter your address</Search.Label>
-      <Search.Input type="text" onChange={handleChange} value={value} />
+      <Search.Input />
       <input type="submit" hidden />
     </form>
   </>
 );
 
-Search.Input = SearchInput;
+Search.Input = SearchBar;
 Search.Label = SearchLabel;
 
 export default Search;
