@@ -86,20 +86,19 @@ const resolvers = {
           search: userLocation.place_name
         }
       });
-      console.log(
-        client.readQuery({
-          query: gql`
-            {
-              userLocation {
-                place_name
-                center
-              }
-            }
-          `
-        })
-      );
-
       return null;
+    },
+    fetchStations: async (_: any, args: any, { cache, getCacheKey }: any) => {
+      const currentLocation: any = client.readQuery({
+        query: gql`
+          {
+            userLocation {
+              center
+            }
+          }
+        `
+      });
+      console.log(currentLocation);
     }
   }
 };
