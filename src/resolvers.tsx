@@ -87,13 +87,6 @@ const resolvers = {
         }
       });
       return null;
-    },
-    nearestStations: async (
-      _: any,
-      { lat, lng }: any,
-      { cache, getCacheKey }: any
-    ) => {
-      console.log(lat, lng);
     }
   }
 };

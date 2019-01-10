@@ -9,7 +9,6 @@ interface IProps {
 
 const Search = ({ handleSubmit, value }: IProps) => (
   <>
-    {console.log(value)}
     <form onSubmit={handleSubmit}>
       <Search.Label>Enter your address</Search.Label>
       <Search.Input value={value} />

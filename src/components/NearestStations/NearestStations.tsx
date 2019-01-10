@@ -13,9 +13,14 @@ const NEAREST_STATIONS = gql`
     sortedStations(lat: $lat, lng: $lng) {
       id
       name
+      address
       distance(lat: $lat, lng: $lng)
       lines {
         name
+      }
+      trains {
+        Destination
+        minutesAway
       }
     }
   }

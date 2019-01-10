@@ -35,7 +35,6 @@ export default class SearchContainer extends Component {
           >
             <LocationList>
               {(data: LocationQuery) => {
-                console.log(data);
                 const { locations, index, search } = data;
                 return (
                   <>
