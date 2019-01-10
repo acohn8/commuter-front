@@ -88,17 +88,12 @@ const resolvers = {
       });
       return null;
     },
-    fetchStations: async (_: any, args: any, { cache, getCacheKey }: any) => {
-      const currentLocation: any = client.readQuery({
-        query: gql`
-          {
-            userLocation {
-              center
-            }
-          }
-        `
-      });
-      console.log(currentLocation);
+    nearestStations: async (
+      _: any,
+      { lat, lng }: any,
+      { cache, getCacheKey }: any
+    ) => {
+      console.log(lat, lng);
     }
   }
 };

@@ -3,7 +3,7 @@ import Nav from '../components/Nav/Nav';
 import Container from '../elements/Container';
 import GlobalStyle from '../theme/globalStyle';
 import SearchContainer from './SearchContainer/SearchContainer';
-import AllStations from './AllStations/AllStations';
+import StationsContainer from './StationsContainer/StationsContainer';
 
 const App = () => (
   <>
@@ -11,7 +11,7 @@ const App = () => (
     <Nav />
     <Container>
       <SearchContainer />
-      <AllStations />
+      <StationsContainer />
     </Container>
   </>
 );

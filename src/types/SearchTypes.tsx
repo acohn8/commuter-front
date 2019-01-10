@@ -8,5 +8,9 @@ export interface LocationQuery {
   locations: Location[];
   index: number;
   search: string | undefined;
-  userLocation?: Location;
+  userLocation:
+    | {
+        center: number[];
+      }
+    | undefined;
 }
