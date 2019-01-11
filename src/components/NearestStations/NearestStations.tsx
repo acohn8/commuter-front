@@ -23,6 +23,7 @@ const NEAREST_STATIONS = gql`
           Destination
           minutesAway
           trainId
+          Line
         }
       }
     }

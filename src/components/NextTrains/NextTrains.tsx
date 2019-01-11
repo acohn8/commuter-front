@@ -5,6 +5,7 @@ import NextTrainsTable from './NextTrainsTable';
 import NextTrainsTableHeader from './NextTrainsTableHeader';
 import NextTrainsTableCell from './NextTrainsTableCell';
 import NextTrainsBody from './NextTrainsBody';
+import NextTrainsLineIndicator from './NextTrainsLineIndicator';
 
 interface IProps {
   trains: Train[];
@@ -20,7 +21,10 @@ const NextTrains = ({ trains }: IProps) => (
         </tr>
         {trains.slice(0, 3).map((train: Train) => (
           <tr key={train.trainId}>
-            <NextTrainsTableCell>{train.Destination}</NextTrainsTableCell>
+            <NextTrainsTableCell>
+              <NextTrains.LineIndicator line={'RD'} />
+              {train.Destination}
+            </NextTrainsTableCell>
             <NextTrainsTableCell>
               {train.minutesAway.toFixed(1)}
             </NextTrainsTableCell>
@@ -36,5 +40,6 @@ NextTrains.Table = NextTrainsTable;
 NextTrains.Body = NextTrainsBody;
 NextTrains.Header = NextTrainsTableHeader;
 NextTrains.Cell = NextTrainsTableCell;
+NextTrains.LineIndicator = NextTrainsLineIndicator;
 
 export default NextTrains;

@@ -7,6 +7,7 @@ import NextTrains from '../../components/NextTrains/NextTrains';
 import { Train } from '../../types/TrainTypes';
 import H5 from '../../elements/H5';
 import NextTrainsHeader from './NextTrainsHeader';
+import LineMetrics from '../../components/LineMetrics/LineMetrics';
 
 interface Direction {
   direction: number;
@@ -25,6 +26,7 @@ const StationsContainer = () => (
                 <FlexWrapContainer>
                   {sortedStations.map((station: any) => {
                     const { name, distance, id, trains } = station;
+                    console.log(sortedStations);
                     return (
                       <Card
                         key={id}
