@@ -19,8 +19,11 @@ const NEAREST_STATIONS = gql`
         name
       }
       trains {
-        Destination
-        minutesAway
+        data {
+          Destination
+          minutesAway
+          trainId
+        }
       }
     }
   }

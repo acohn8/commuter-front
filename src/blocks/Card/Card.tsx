@@ -11,18 +11,16 @@ interface IProps {
   image?: string;
   header?: string;
   subheader?: string;
-  text?: string;
+  children: any;
 }
 
-const Card = ({ image, header, subheader, text }: IProps) => (
+const Card = ({ image, header, subheader, children }: IProps) => (
   <Card.Wrapper>
     <Card.Image src={image} />
     <Card.Contents>
       <Card.Header>{header}</Card.Header>
       <Card.Subheader>{subheader}</Card.Subheader>
-      <Card.Body>
-        <Card.Text>{text}</Card.Text>
-      </Card.Body>
+      <Card.Body>{children}</Card.Body>
     </Card.Contents>
   </Card.Wrapper>
 );
@@ -33,6 +31,5 @@ Card.Body = CardBody;
 Card.Image = CardImage;
 Card.Header = CardHeader;
 Card.Subheader = CardSubheader;
-Card.Text = P;
 
 export default Card;

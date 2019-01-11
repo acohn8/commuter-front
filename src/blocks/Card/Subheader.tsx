@@ -6,6 +6,7 @@ const CardSubheader = styled(H5)`
   margin: 0;
   color: ${colors.subheader};
   font-weight: 500;
+  width: 100%;
 `;
 
 export default CardSubheader;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from '../theme/colors';
 
-const H4 = styled.h5`
+const H5 = styled.h5`
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -15,4 +15,4 @@ const H4 = styled.h5`
   font-weight: 700;
 `;
 
-export default H4;
+export default H5;
