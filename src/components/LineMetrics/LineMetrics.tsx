@@ -5,15 +5,6 @@ import P from '../../elements/P';
 import LineMetricItem from './LineMetricItem';
 import LineMetricHeader from './LineMetricHeader';
 
-const lines = {
-  red: 'RD',
-  green: 'GR',
-  yellow: 'YL',
-  orange: 'OR',
-  blue: 'BL',
-  silver: 'SV'
-};
-
 const LineMetrics = () => (
   <LineMetrics.Wrapper style={{ width: '100%' }}>
     <H5 style={{ width: '100%' }}>Red Line</H5>

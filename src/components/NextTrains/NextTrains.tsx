@@ -22,11 +22,13 @@ const NextTrains = ({ trains }: IProps) => (
         {trains.slice(0, 3).map((train: Train) => (
           <tr key={train.trainId}>
             <NextTrainsTableCell>
-              <NextTrains.LineIndicator line={'RD'} />
+              <NextTrains.LineIndicator line={train.Line} />
               {train.Destination}
             </NextTrainsTableCell>
             <NextTrainsTableCell>
-              {train.minutesAway.toFixed(1)}
+              {train.minutesAway === 0
+                ? 'Boarding'
+                : train.minutesAway.toFixed(1)}
             </NextTrainsTableCell>
           </tr>
         ))}

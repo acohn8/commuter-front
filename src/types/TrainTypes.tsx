@@ -3,4 +3,5 @@ export interface Train {
   minutesAway: number;
   trainId: string;
   Line: string;
+  observedDate: string;
 }

@@ -8,6 +8,7 @@ import { Train } from '../../types/TrainTypes';
 import H5 from '../../elements/H5';
 import NextTrainsHeader from './NextTrainsHeader';
 import LineMetrics from '../../components/LineMetrics/LineMetrics';
+import formatDate from '../../helpers/formatDate';
 
 interface Direction {
   direction: number;
@@ -26,12 +27,15 @@ const StationsContainer = () => (
                 <FlexWrapContainer>
                   {sortedStations.map((station: any) => {
                     const { name, distance, id, trains } = station;
-                    console.log(sortedStations);
+                    console.log(trains);
                     return (
                       <Card
                         key={id}
                         header={name}
                         subheader={`${distance.toFixed(2)} miles away`}
+                        meta={`Updated: ${formatDate(
+                          trains[0].data[0].observedDate
+                        )}`}
                       >
                         <FlexWrapContainer>
                           <NextTrainsHeader>Next Trains</NextTrainsHeader>
