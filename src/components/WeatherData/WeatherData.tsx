@@ -1,8 +1,10 @@
 import React from 'react';
+import * as Skycons from 'react-skycons';
 import P from '../../elements/P';
 
 interface IProps {
   currently: {
+    icon: string;
     temperature: number;
     summary: string;
     apparentTemperature: number;
@@ -21,9 +23,8 @@ interface IProps {
 const WeatherData = ({ currently, hourly, daily }: IProps) => (
   <>
     <div style={{ width: '50%' }}>
-      {console.log(daily)}
       <h4>Now</h4>
-      <P>{currently.temperature}</P>
+      <P>{Math.round(currently.temperature)} degrees</P>
       <P>{currently.summary}</P>
     </div>
     <div style={{ width: '50%' }}>

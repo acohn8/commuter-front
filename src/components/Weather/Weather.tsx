@@ -2,7 +2,6 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Card from '../../blocks/Card/Card';
-import P from '../../elements/P';
 import WeatherData from '../WeatherData/WeatherData';
 
 interface IProps {
@@ -14,6 +13,7 @@ const WEATHER = gql`
   query nearestStations($lat: Float!, $lng: Float!) {
     weather(lat: $lat, lng: $lng) {
       currently {
+        icon
         temperature
         summary
         apparentTemperature
@@ -39,7 +39,7 @@ const Weather = ({ lat, lng }: IProps) => (
       const { currently, hourly, daily } = data.weather;
       console.log(daily);
       return (
-        <Card header={'Today'}>
+        <Card header={'Weather'}>
           <WeatherData currently={currently} hourly={hourly} daily={daily} />
         </Card>
       );
