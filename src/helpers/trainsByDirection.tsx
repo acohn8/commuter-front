@@ -1,8 +1,12 @@
 import { Train } from '../types/TrainTypes';
+import Code from '../types/CodeTypes';
 
-const trainsByDirection = (trains: Train[], codes: any) => {
-  console.log(codes);
-  const byLineAndDirection = codes.reduce((acc: any, code: any) => {
+interface TrainByLine {
+  [key: string]: Train[] | {};
+}
+
+const trainsByDirection = (trains: Train[], codes: Code[]) => {
+  const byLineAndDirection = codes.reduce((acc: TrainByLine, code: Code) => {
     const { station_code } = code;
     const directionOne = trains.filter(
       (train: Train) =>
@@ -12,8 +16,8 @@ const trainsByDirection = (trains: Train[], codes: any) => {
       (train: Train) =>
         station_code === train.LocationCode && train.directionNumber === 2
     );
-    acc[code.station_code] = {};
-    acc[code.station_code] = [directionOne, directionTwo];
+    acc[station_code] = {};
+    acc[station_code] = [directionOne, directionTwo];
     return acc;
   }, {});
   return byLineAndDirection;

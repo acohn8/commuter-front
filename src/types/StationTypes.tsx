@@ -1,18 +1,13 @@
+import { Train } from './TrainTypes';
+import Code from './CodeTypes';
+
 interface StationType {
   id: string;
   name: string;
   address: string;
-  distance: any;
-  lines: [
-    {
-      id: string;
-      name: string;
-    },
-    {
-      id: string;
-      name: string;
-    }
-  ];
+  distance: number;
+  trains: Train[];
+  codes: Code[];
 }
 
 export default StationType;

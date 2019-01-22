@@ -11,7 +11,7 @@ interface IProps {
   trains: Train[];
 }
 
-const NextTrains = ({ trains }: any) => (
+const NextTrains = ({ trains }: IProps) => (
   <div style={{ width: '100%' }}>
     <NextTrains.Table>
       <NextTrains.Body>

@@ -35,9 +35,10 @@ const NEAREST_STATIONS = gql`
 `;
 
 const NearestStations = ({ lat, lng, children }: IProps) => (
-  // pollInterval={1000}
-  <Query query={NEAREST_STATIONS} variables={{ lat, lng }}>
+  <Query query={NEAREST_STATIONS} variables={{ lat, lng }} pollInterval={5000}>
     {({ loading, error, data }) => {
+      console.log(lat, lng);
+
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
       return children(data.sortedStations);
