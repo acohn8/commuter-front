@@ -11,7 +11,7 @@ interface IProps {
   trains: Train[];
 }
 
-const NextTrains = ({ trains }: IProps) => (
+const NextTrains = ({ trains }: any) => (
   <div style={{ width: '100%' }}>
     <NextTrains.Table>
       <NextTrains.Body>
@@ -26,9 +26,7 @@ const NextTrains = ({ trains }: IProps) => (
               {train.Destination}
             </NextTrainsTableCell>
             <NextTrainsTableCell>
-              {train.minutesAway === 0
-                ? 'Boarding'
-                : train.minutesAway.toFixed(1)}
+              {train.minutesAway.toFixed(1)}
             </NextTrainsTableCell>
           </tr>
         ))}

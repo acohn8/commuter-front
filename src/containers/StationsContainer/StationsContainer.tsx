@@ -8,12 +8,8 @@ import { Train } from '../../types/TrainTypes';
 import H5 from '../../elements/H5';
 import NextTrainsHeader from './NextTrainsHeader';
 import LineMetrics from '../../components/LineMetrics/LineMetrics';
+import trainsByDirection from '../../helpers/trainsByDirection';
 import formatDate from '../../helpers/formatDate';
-
-interface Direction {
-  direction: number;
-  data: Train[];
-}
 
 const StationsContainer = () => (
   <UserLocation>
@@ -26,25 +22,24 @@ const StationsContainer = () => (
               return (
                 <FlexWrapContainer>
                   {sortedStations.map((station: any) => {
-                    const { name, distance, id, trains } = station;
-                    console.log(trains);
+                    const { name, distance, id, trains, codes } = station;
+                    const sortedTrains: any = trainsByDirection(trains, codes);
+                    const lines = Object.keys(sortedTrains);
+                    const formattedTime = formatDate(trains[0].observedDate);
                     return (
                       <Card
                         key={id}
                         header={name}
                         subheader={`${distance.toFixed(2)} miles away`}
-                        meta={`Updated: ${formatDate(
-                          trains[0].data[0].observedDate
-                        )}`}
+                        meta={`Updated ${formattedTime}`}
                       >
                         <FlexWrapContainer>
                           <NextTrainsHeader>Next Trains</NextTrainsHeader>
-                          {trains.map((direction: Direction) => (
-                            <NextTrains
-                              key={direction.direction}
-                              trains={direction.data}
-                            />
-                          ))}
+                          {lines.map((line: string) =>
+                            sortedTrains[line].map((trains: Train[]) => (
+                              <NextTrains trains={trains} />
+                            ))
+                          )}
                         </FlexWrapContainer>
                       </Card>
                     );
@@ -60,5 +55,4 @@ const StationsContainer = () => (
     }}
   </UserLocation>
 );
-
 export default StationsContainer;

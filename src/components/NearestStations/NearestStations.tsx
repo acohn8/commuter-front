@@ -18,21 +18,25 @@ const NEAREST_STATIONS = gql`
       lines {
         name
       }
+      codes {
+        station_code
+      }
       trains {
-        line
-        data {
-          direction
-          trainData {
-            minutesAway
-          }
-        }
+        directionNumber
+        Destination
+        minutesAway
+        trainId
+        Line
+        observedDate
+        LocationCode
       }
     }
   }
 `;
 
 const NearestStations = ({ lat, lng, children }: IProps) => (
-  <Query query={NEAREST_STATIONS} variables={{ lat, lng }} pollInterval={5000}>
+  // pollInterval={1000}
+  <Query query={NEAREST_STATIONS} variables={{ lat, lng }}>
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
